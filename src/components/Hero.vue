@@ -10,7 +10,7 @@ export default {
 
     <div class="hero-image">
       <img src="../assets/hero-image.png" alt="Telegram logo">
-      <a href="https://github.com/Fayozxon" class="hero-image__star" target="_blank">
+      <a href="https://github.com/Fayozxon/telesim" class="hero-image__star" target="_blank">
         <img src="../assets/icons/icon-star.gif" alt="Star icon">
         Githubda yulduz bosing
       </a>
@@ -32,7 +32,7 @@ export default {
         Bu chat <a href="https://telegram.org/" target="_blank">Telegram</a>ning simulyatori. Brauzerni o'zida soxta xabarlarni hosil qiling va skrinshotlarni bepul yuklab olib do'stlaringizga yuboring! Faqatgina hazil sifatida ishlatishni maslahat beraman.
       </p>
       <a href="#!" class="btn">Sinab ko‘ring</a>
-      <a href="#!" class="btn btn-secondary">Dasturchi</a>
+      <a href="https://github.com/Fayozxon/" class="btn btn-secondary">Dasturchi</a>
     </section>
 
   </div>

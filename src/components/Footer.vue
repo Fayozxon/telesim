@@ -10,15 +10,15 @@ export default {
     <div class="container">
       
       <div class="footer__social">
-        <a href="#">
+        <a href="https://github.com/Fayozxon" target="_blank">
           <img src="../assets/logo-github.svg" alt="Github logo">
           Github
         </a>
-        <a href="#">
+        <a href="https://dribbble.com/fayozxon" target="_blank">
           <img src="../assets/logo-dribbble.svg" alt="Dribbble logo">
           Dribbble
         </a>
-        <a href="#">
+        <a href="https://t.me/fayozhons" target="_blank">
           <img src="../assets/logo-telegram.svg" alt="Telegram logo">
           Telegram
         </a>
