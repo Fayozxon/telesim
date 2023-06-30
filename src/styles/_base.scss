@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+
+// core
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: inherit;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    color: $clr-primary-500;
+    background: $clr-primary-100;
+}
+
+.container {
+    max-width: 622px;
+    padding: 0 2rem;
+    margin: 0 auto;
+}
+
+// buttons
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: $clr-accent-500;
+    color: $clr-primary-100;
+    border-radius: 5px;
+    border: 1px solid $clr-accent-500;
+    cursor: pointer;
+
+    &:active {
+        opacity: 0.7;
+    }
+
+    &:hover {
+        color: $clr-primary-100;
+    }
+
+    &-secondary {
+        background: $clr-primary-100;
+        color: $clr-accent-500;
+
+        &:hover {
+            color: $clr-accent-500;
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $clr-accent-500;
+    transition: $ts-200;
+
+    &:hover {
+        color: inherit;
+    }
+}
