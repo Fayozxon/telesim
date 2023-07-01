@@ -4,8 +4,9 @@ export default {
   data() {
     return {
       profilePicSrc: '',
-      username: 'Martha Craig',
-      userStatus: 'last seen just now'
+      username: 'Fayozxon Sh.',
+      userStatus: 'online',
+      time: ''
     }
   },
   computed: {
@@ -30,7 +31,19 @@ export default {
       });
       fileReader.readAsDataURL(files[0]);
       this.profilePicSrc = files[0];
+    },
+    getTime() {
+      setInterval(() => {
+        let now = new Date(),
+            hour = now.getHours(),
+            min = now.getMinutes();
+            
+        this.time = `${hour}:${min}`
+      }, -1000);
     }
+  },
+  mounted() {
+    this.getTime();
   }
 }
 </script>
@@ -42,7 +55,7 @@ export default {
       <!-- header -->
       <div class="screen__header">
         <div class="screen__header--status">
-          <span class="time">9:41</span>
+          <span class="time">{{ time }}</span>
           <div class="icons">
             <img src="../assets/icons/icon-signal.svg">
             <img src="../assets/icons/icon-wifi.svg">
@@ -81,7 +94,11 @@ export default {
         </div>
       </div>
       <!-- screen -->
-      <h1>Screen will be here</h1>
+      <div class="screen__messages">
+        <div class="right">
+
+        </div>
+      </div>
       <!-- input -->
       <div class="screen__input">
         <div class="screen__input--icons">
@@ -104,14 +121,24 @@ export default {
 
 <style lang="scss" scoped>
 
+.box {
+  display: flex;
+  justify-content: center;
+}
+
 .screen {
   position: relative;
   width: 375px;
+  min-width: 375px;
   height: 812px;
   background: url('../assets/screen-bg.png') no-repeat;
   background-size: cover;
   color: #000;
   box-shadow: 0 20px 70px rgba(0,0,0,0.15);
+
+  // @media only screen and (max-width: 374px) {
+  //   transform: scale(0.8);
+  // }
 
   &__header {
     position: absolute;
@@ -158,7 +185,7 @@ export default {
 
       .name {
         text-align: center;
-        padding-right: 0;
+        padding-right: 18px;
         display: flex;
         flex-direction: column;
         
