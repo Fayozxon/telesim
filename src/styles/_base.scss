@@ -30,6 +30,13 @@ body {
     border-radius: 5px;
     border: 1px solid $clr-accent-500;
     cursor: pointer;
+    transition: $ts-200;
+
+    img, svg, i {
+        height: 20px;
+        margin-right: 5px;
+        vertical-align: middle;
+    }
 
     &:active {
         opacity: 0.7;
@@ -56,5 +63,88 @@ a {
 
     &:hover {
         color: inherit;
+    }
+}
+
+// inputs
+.toggle {
+    position: relative;
+    display: inline-block;
+    position: relative;
+    display: inline-block;
+    width: 29px;
+    height: 16px;
+    background: $clr-accent-500;
+    border-radius: 100vw;
+
+    input:checked + .custom {
+        left: 16px;
+    }
+
+    .custom {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        bottom: 3px;
+        width: 10px;
+        background: $clr-primary-100;
+        border-radius: 50%;
+        pointer-events: none;
+        transition: $ts-200;
+    }
+
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+}
+
+.checkbox {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid $clr-accent-500;
+    background: $clr-primary-200;
+
+    input:checked + .custom {
+        opacity: 1;
+    }
+
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    .custom {
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        width: 10px;
+        height: 5px;
+        transform: rotate(-45deg);
+        border-left: 1px solid $clr-accent-500;
+        border-bottom: 1px solid $clr-accent-500;
+        pointer-events: none;
+        opacity: 0;
+    }
+}
+
+// RWD
+@media only screen and (max-width: 456px) {
+    .hide-mobile {
+        display: none;
     }
 }

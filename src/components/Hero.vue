@@ -31,7 +31,7 @@ export default {
       <p class="hero-section__text">
         Bu chat <a href="https://telegram.org/" target="_blank">Telegram</a>ning simulyatori. Brauzerni o'zida soxta xabarlarni hosil qiling va skrinshotlarni bepul yuklab olib do'stlaringizga yuboring! Faqatgina hazil sifatida ishlatishni maslahat beraman.
       </p>
-      <a href="#!" class="btn">Sinab ko‘ring</a>
+      <a href="#main" class="btn">Sinab ko‘ring</a>
       <a href="https://github.com/Fayozxon/" class="btn btn-secondary">Dasturchi</a>
     </section>
 
@@ -107,7 +107,6 @@ export default {
 
 .hero-section {
   padding-top: 60px;
-  padding-bottom: 156px;
 
   &__title {
     font-size: $fs-400;

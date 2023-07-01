@@ -24,7 +24,7 @@ export default {
         </a>
       </div>
 
-      <p class="footer__text">2023 | @fayozhons tomonidan.</p>
+      <p class="footer__text">2023 | Telesim - telegram simulator.</p>
 
     </div>
   </footer>
