@@ -35,7 +35,7 @@ export default {
         <!-- buttons -->
         <div class="playground__btns">
             <div>
-                <button class="btn">
+                <button class="btn btn-send">
                     <img src="../assets/icons/icon-up.svg">
                     <span class="hide-mobile">Yuborish</span>
                 </button>
@@ -144,6 +144,12 @@ export default {
         .btn-reset {
             svg, img, i {
                 margin-right: 0;
+            }
+        }
+
+        .btn-send {
+            svg, img, i {
+                margin: 0 3px;
             }
         }
     }

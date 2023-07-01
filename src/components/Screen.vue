@@ -7,12 +7,244 @@ export default {
 
 <template>
   
-  <div>
-    <h1>Screen will be here</h1>
+  <div class="box">
+    <div class="screen">
+      <!-- header -->
+      <div class="screen__header">
+        <div class="screen__header--status">
+          <span class="time">9:41</span>
+          <div class="icons">
+            <img src="../assets/icons/icon-signal.svg">
+            <img src="../assets/icons/icon-wifi.svg">
+            <img src="../assets/icons/icon-battery.svg">
+          </div>
+        </div>
+        <!-- profile -->
+        <div class="screen__header--profile">
+          <span class="button">
+            <img src="../assets/icons/icon-back.svg">
+            Chats
+          </span>
+          <div class="name">
+            <h3>Martha Craig</h3>
+            <p>last seen just now</p>
+          </div>
+          <div class="img">
+            <h3>mc</h3>
+            <!-- <img src=""> -->
+            <div class="icon-box">
+              <img class="icon" src="../assets/icons/icon-camera.svg">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- screen -->
+      <h1>Screen will be here</h1>
+      <!-- input -->
+      <div class="screen__input">
+        <div class="screen__input--icons">
+          <img src="../assets/icons/icon-attach.svg">
+          <div class="input">
+            <span>Message</span>
+            <img src="../assets/icons/icon-stickers.svg">
+          </div>
+          <img src="../assets/icons/icon-mic.svg">
+        </div>
+        <!-- home btn -->
+        <div class="screen__input--home-btn">
+          <span></span>
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>
 
 <style lang="scss" scoped>
 
+.screen {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  background: url('../assets/screen-bg.png') no-repeat;
+  background-size: cover;
+  color: #000;
+  box-shadow: 0 20px 70px rgba(0,0,0,0.15);
+
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 88px;
+    background: #F6F6F6;
+
+    &--status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 15px;
+      padding-left: 30px;
+      padding-bottom: 9px;
+
+      .time {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .icons {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+    }
+
+    &--profile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 8px;
+      padding-right: 6px;
+
+      .button {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 17px;
+        color: #037EE5;
+      }
+
+      .name {
+        text-align: center;
+        padding-right: 32px;
+        
+        h3 {
+          font-size: 17px;
+          font-weight: 700;
+          letter-spacing: -0.5px;
+        }
+
+        p {
+          font-size: 13px;
+          letter-spacing: 0.3px;
+          color: #787878;
+        }
+      }
+
+      .img {
+        position: relative;
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        background: linear-gradient(to bottom right, rgb(12, 255, 255), rgb(41, 191, 255));
+        cursor: pointer;
+        overflow: hidden;
+
+        &:hover .icon-box {
+          opacity: 1;
+        }
+
+        h3 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          font-size: 14px;
+          color: #fff;
+          text-transform: uppercase;
+          font-weight: 700;
+        }
+
+        .pic {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          object-fit: cover;
+        }
+        
+        .icon-box {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0,0,0,0.8);
+          transition: 200ms;
+          opacity: 0;
+
+          .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 18px;
+            height: 18px;
+            filter: invert(1);
+          }
+        }
+      }
+    }
+  }
+
+  &__input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 79px;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    background: #F6F6F6;
+    
+    &--icons {
+      display: flex;
+    }
+
+    &--icons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 22px;
+      padding-left: 7px;
+      padding-right: 11px;
+
+      .input {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border-radius: 50px;
+        padding-top: 5px;
+        padding-bottom: 6px;
+        padding-left: 13px;
+        padding-right: 8px;
+        border: 1px solid #D1D1D6;
+
+        span {
+          font-size: 17px;
+          color: #AEAEB2;
+        }
+
+        img {
+          margin-left: 180px;
+        }
+      }
+    }
+
+    &--home-btn {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 9px;
+      
+      span {
+        width: 134px;
+        height: 5px;
+        background: rgba(128, 128, 128, 0.3);
+        border-radius: 10px;
+      }
+    }
+  }
+}
 </style>
