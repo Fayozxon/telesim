@@ -45,9 +45,22 @@ export default {
 
   @media only screen and (max-width: 825px) {
     flex-direction: column;
+    align-items: center;
 
     & > div {
+      max-width: 400px;
       width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 456px) {
+    padding-left: 0;
+    padding-right: 0;
+
+    .playground {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-top: 2rem;
     }
   }
 }

@@ -1,7 +1,37 @@
 <script>
 
 export default {
-  components: {}
+  data() {
+    return {
+      profilePicSrc: '',
+      username: 'Martha Craig',
+      userStatus: 'last seen just now'
+    }
+  },
+  computed: {
+    isStatusOnline() {
+      if (this.userStatus.toLowerCase() == 'online') return true;
+      return false;
+    },
+    getUsernameLetters() {
+      let name = this.username.split(' ');
+      if (name.length > 1 && name[1][0]) {
+        return name[0][0]+name[1][0];
+      }
+      return name[0][0];
+    }
+  },
+  methods: {
+    onFilePicked(event) {
+      const files = event.target.files;
+      const fileReader = new FileReader();
+      fileReader.addEventListener('load', () => {
+        this.profilePicSrc = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.profilePicSrc = files[0];
+    }
+  }
 }
 </script>
 
@@ -26,15 +56,27 @@ export default {
             Chats
           </span>
           <div class="name">
-            <h3>Martha Craig</h3>
-            <p>last seen just now</p>
+            <input
+              class="input-name"
+              type="text"
+              v-model="username"
+              placeholder="Name"
+              spellcheck="false">
+            <input
+              class="input-status"
+              :class="{accent: isStatusOnline}"
+              type="text"
+              v-model="userStatus"
+              placeholder="status"
+              spellcheck="false">
           </div>
-          <div class="img">
-            <h3>mc</h3>
-            <!-- <img src=""> -->
+          <div class="img" :class="{bg: !profilePicSrc}">
+            <h3 v-if="!profilePicSrc">{{ getUsernameLetters }}</h3>
+            <img class="pic" v-if="profilePicSrc" :src="profilePicSrc">
             <div class="icon-box">
               <img class="icon" src="../assets/icons/icon-camera.svg">
             </div>
+            <input class="file-input" accept="image/png, image/jpeg, image/jpg" type="file" @change="onFilePicked">
           </div>
         </div>
       </div>
@@ -116,19 +158,33 @@ export default {
 
       .name {
         text-align: center;
-        padding-right: 32px;
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
         
-        h3 {
+        .input-name {
           font-size: 17px;
           font-weight: 700;
           letter-spacing: -0.5px;
+          background: transparent;
+          border: none;
+          text-align: center;
         }
 
-        p {
+        .input-status {
           font-size: 13px;
           letter-spacing: 0.3px;
           color: #787878;
+          background: transparent;
+          width: auto;
+          border: none;
+          text-align: center;
+
+          &.accent {
+            color: #037EE5;
+          }
         }
+
       }
 
       .img {
@@ -136,9 +192,22 @@ export default {
         width: 37px;
         height: 37px;
         border-radius: 50%;
-        background: linear-gradient(to bottom right, rgb(12, 255, 255), rgb(41, 191, 255));
-        cursor: pointer;
         overflow: hidden;
+        cursor: pointer;
+
+        &.bg {
+          background: linear-gradient(to bottom right, rgb(12, 255, 255), rgb(41, 191, 255));
+        }
+
+        .file-input {
+          position: absolute;
+          top: -40px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          cursor: pointer;
+          opacity: 0;
+        }
 
         &:hover .icon-box {
           opacity: 1;
@@ -153,14 +222,16 @@ export default {
           color: #fff;
           text-transform: uppercase;
           font-weight: 700;
+          z-index: 1;
+          pointer-events: none;
         }
 
         .pic {
           position: absolute;
           top: 0;
           left: 0;
-          right: 0;
-          bottom: 0;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
         }
         
@@ -173,6 +244,8 @@ export default {
           background: rgba(0,0,0,0.8);
           transition: 200ms;
           opacity: 0;
+          z-index: 5;
+          pointer-events: none;
 
           .icon {
             position: absolute;
