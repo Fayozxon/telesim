@@ -39,6 +39,14 @@ export default {
     },
     receiveMessage() {
         this.newMessage('left');
+    },
+    onBgPicked(event) {
+      const files = event.target.files;
+      let img = URL.createObjectURL(files[0]);
+      this.$emit('newScreenBg', img);
+    },
+    pressInput() {
+        fileInput.click();
     }
   }
 }
@@ -91,10 +99,13 @@ export default {
             </div>
         </div>
         <!-- bg control -->
-        <button class="btn">Fon rasmini qo'shish</button>
+        <div class="file-input">
+            <button class="btn" @click="pressInput">Fon rasmini tanlash</button>
+            <input type="file" @change="onBgPicked" accept="image/png, image/jpeg" id="fileInput" class="btn">
+        </div>
         <div class="playground__checkbox">
             <div class="checkbox">
-                <input type="checkbox" v-model="isBlurred" id="isBlurred">
+                <input type="checkbox" @click="$emit('makeBgBlurred')" id="isBlurred">
                 <div class="custom"></div>
             </div>
             <label for="isBlurred">fon xiralashish effekti</label>
@@ -183,6 +194,12 @@ export default {
             svg, img, i {
                 margin: 0 3px;
             }
+        }
+    }
+
+    .file-input {
+        input {
+            display: none;
         }
     }
 }

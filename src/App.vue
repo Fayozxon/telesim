@@ -9,7 +9,9 @@ export default {
   data() {
     return {
       messages: [],
-      isLightTheme: true
+      isLightTheme: true,
+      screenBgSrc: '',
+      isBgBlurred: false
     }
   },
   methods: {
@@ -21,6 +23,12 @@ export default {
     },
     deleteLastMessage() {
       this.messages.shift();
+    },
+    newScreenBg(imgSrc) {
+      this.screenBgSrc = imgSrc;
+    },
+    makeBgBlurred() {
+      this.isBgBlurred = !this.isBgBlurred;
     }
   }
 }
@@ -36,13 +44,17 @@ export default {
       
       <Screen
         :messages="messages"
-        :isLightTheme="isLightTheme">
+        :isLightTheme="isLightTheme"
+        :screenBgSrc="screenBgSrc"
+        :isBgBlurred="isBgBlurred">
       </Screen>
       <Playground
         @addMessage="addMessage"
         :isLightTheme="isLightTheme"
         @switchScreenTheme="switchScreenTheme"
-        @deleteLastMessage="deleteLastMessage">
+        @deleteLastMessage="deleteLastMessage"
+        @newScreenBg="newScreenBg"
+        @makeBgBlurred="makeBgBlurred">
       </Playground>
 
     </section>

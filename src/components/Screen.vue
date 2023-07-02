@@ -1,13 +1,14 @@
 <script>
 
 export default {
-  props: ['messages', 'isLightTheme'],
+  props: ['messages', 'isLightTheme', 'screenBgSrc', 'isBgBlurred'],
   data() {
     return {
       profilePicSrc: '',
-      username: 'Fayozxon Sh.',
+      username: 'Pavel Durov',
       userStatus: 'online',
-      time: ''
+      time: '',
+      date: ''
     }
   },
   computed: {
@@ -48,10 +49,16 @@ export default {
             
         this.time = `${hour}:${min}`
       }, -1000);
+    },
+    getDate() {
+      let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      let today = new Date();
+      this.date = `${months[today.getMonth()]} ${today.getDate()}`;
     }
   },
   mounted() {
     this.getTime();
+    this.getDate();
   }
 }
 </script>
@@ -60,10 +67,16 @@ export default {
   
   <div class="box">
     <div class="screen" :class="{dark: !isLightTheme}">
+      <img
+        v-if="screenBgSrc"
+        :src="screenBgSrc"
+        class="screen__bg"
+        :class="{blurred: isBgBlurred}"
+        alt="Background image">
       <!-- greeting -->
       <div v-if="!messages.length" class="screen__greeting-box">
         <h3>No messages here yet...</h3>
-        <p>Start the conversation or tap the greeting icon below.</p>
+        <p>Start the conversation or tap the greeting below.</p>
         <img src="../assets/sticker.webp" alt="Sticker">
       </div>
       <!-- header -->
@@ -113,6 +126,7 @@ export default {
           {{ msg.text }}
           <span class="time">{{ msg.time }}</span>
         </p>
+        <h3 v-if="messages.length" class="screen__messages--date">{{ date }}</h3>
       </div>
       <!-- input -->
       <div class="screen__input">
@@ -150,10 +164,25 @@ export default {
   background-size: cover;
   color: #000;
   box-shadow: 0 20px 70px rgba(0,0,0,0.15);
+  overflow: hidden;
 
   // @media only screen and (max-width: 374px) {
   //   transform: scale(0.8);
   // }
+
+  &__bg {
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 105%;
+    height: 105%;
+    object-fit: cover;
+
+    &.blurred {
+      filter: blur(10px);
+    }
+  }
 
   &__greeting-box {
     position: absolute;
@@ -340,13 +369,22 @@ export default {
     width: 100%;
     overflow: hidden;
 
+    &--date {
+      align-self: center;
+      background: rgba(0,0,0,0.2);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
     .msg-right + .msg-right::before {
       display: none;
     }
     .msg-left + .msg-left::before {
       display: none;
     }
-
     .msg-left + .msg-right {
       margin-bottom: 5px;
     }
@@ -465,7 +503,7 @@ export default {
       color: #fff;
     }
 
-    .screen__greeting-box {
+    .screen__greeting-box, .screen__messages--date {
       background: rgba(168, 168, 168, 0.15);
     }
 
