@@ -18,6 +18,9 @@ export default {
     },
     switchScreenTheme() {
       this.isLightTheme = !this.isLightTheme;
+    },
+    deleteLastMessage() {
+      this.messages.shift();
     }
   }
 }
@@ -31,8 +34,16 @@ export default {
 
     <section class="main-section" id="main">
       
-      <Screen :messages="messages" :isLightTheme="isLightTheme"></Screen>
-      <Playground @addMessage="addMessage" :isLightTheme="isLightTheme" @switchScreenTheme="switchScreenTheme"></Playground>
+      <Screen
+        :messages="messages"
+        :isLightTheme="isLightTheme">
+      </Screen>
+      <Playground
+        @addMessage="addMessage"
+        :isLightTheme="isLightTheme"
+        @switchScreenTheme="switchScreenTheme"
+        @deleteLastMessage="deleteLastMessage">
+      </Playground>
 
     </section>
 

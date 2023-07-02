@@ -12,7 +12,10 @@ export default {
   },
   computed: {
     isStatusOnline() {
-      if (this.userStatus.toLowerCase() == 'online') return true;
+      let statuses = ['online', 'typing', 'yozmoqda', 'onlayn']
+      for (let i = 0; i < statuses.length; i++) {
+        if (this.userStatus.includes(statuses[i])) return true;
+      }
       return false;
     },
     getUsernameLetters() {
@@ -38,6 +41,10 @@ export default {
         let now = new Date(),
             hour = now.getHours(),
             min = now.getMinutes();
+        
+        if (min.toString().length < 2) {
+          min = '0'+min;
+        }
             
         this.time = `${hour}:${min}`
       }, -1000);
@@ -340,11 +347,19 @@ export default {
       display: none;
     }
 
+    .msg-left + .msg-right {
+      margin-bottom: 5px;
+    }
+
+    .msg-right + .msg-left {
+      margin-bottom: 5px;
+    }
+
     .msg {
       position: relative;
       max-width: 298px;
       padding: 8px 12px;
-      margin: 3px 0;
+      margin: 2px 0;
 
       .time {
         font-size: 12px;
@@ -444,6 +459,7 @@ export default {
   // Dark mode
   &.dark {
     background-image: url('../assets/screen-bg-dark.png');
+    background-color: #000;
 
     * {
       color: #fff;

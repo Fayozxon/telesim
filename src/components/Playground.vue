@@ -11,19 +11,28 @@ export default {
   },
   methods: {
     getTime() {
-        let now = new Date();
-        return `${now.getHours()}:${now.getMinutes()}`
+        let now = new Date(),
+            hour = now.getHours(),
+            min = now.getMinutes();
+        
+        if (min.toString().length < 2) {
+          min = '0'+min;
+        }
+
+        return `${hour}:${min}`;
     },
     newMessage(side) {
-      let msg = {
-        text: this.msg,
-        isRead: this.markAsRead,
-        time: this.getTime(),
-        side
-      }
-
-      this.$emit('addMessage', msg);
-      this.msg = '';
+        if (this.msg.length) {
+            let msg = {
+            text: this.msg,
+            isRead: this.markAsRead,
+            time: this.getTime(),
+            side
+            }
+    
+            this.$emit('addMessage', msg);
+            this.msg = '';
+        }
     },
     sendMessage() {
         this.newMessage('right');
@@ -41,7 +50,7 @@ export default {
         <h2 class="playground__title">
             Tungi
             <div class="toggle">
-                <input type="checkbox" @click="$emit('switchScreenTheme')">
+                <input type="checkbox" :checked="isLightTheme" @click="$emit('switchScreenTheme')">
                 <div class="custom"></div>
             </div>
             Kunduzgi
@@ -66,7 +75,7 @@ export default {
                     <img src="../assets/icons/icon-down.svg">
                     <span class="hide-mobile">Qabul qilish</span>
                 </button>
-                <button class="btn btn-reset">
+                <button @click="$emit('deleteLastMessage')" class="btn btn-reset">
                     <img src="../assets/icons/icon-reset.svg">
                 </button>
             </div>
