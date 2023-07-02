@@ -1,6 +1,7 @@
 <script>
 
 export default {
+  props: ['messages', 'isLightTheme'],
   data() {
     return {
       profilePicSrc: '',
@@ -51,7 +52,13 @@ export default {
 <template>
   
   <div class="box">
-    <div class="screen">
+    <div class="screen" :class="{dark: !isLightTheme}">
+      <!-- greeting -->
+      <div v-if="!messages.length" class="screen__greeting-box">
+        <h3>No messages here yet...</h3>
+        <p>Start the conversation or tap the greeting icon below.</p>
+        <img src="../assets/sticker.webp" alt="Sticker">
+      </div>
       <!-- header -->
       <div class="screen__header">
         <div class="screen__header--status">
@@ -95,9 +102,10 @@ export default {
       </div>
       <!-- screen -->
       <div class="screen__messages">
-        <div class="right">
-
-        </div>
+        <p v-for="msg in messages" class="msg" :class="`msg-${msg.side}`, {notread: !msg.isRead}">
+          {{ msg.text }}
+          <span class="time">{{ msg.time }}</span>
+        </p>
       </div>
       <!-- input -->
       <div class="screen__input">
@@ -140,6 +148,29 @@ export default {
   //   transform: scale(0.8);
   // }
 
+  &__greeting-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 15px;
+
+    h3 {
+      padding-bottom: 5px;
+    }
+
+    img {
+      width: 100px;
+      margin-top: 10px;
+    }
+  }
+
   &__header {
     position: absolute;
     top: 0;
@@ -147,6 +178,7 @@ export default {
     right: 0;
     height: 88px;
     background: #F6F6F6;
+    z-index: 2;
 
     &--status {
       display: flex;
@@ -180,7 +212,7 @@ export default {
         align-items: center;
         gap: 7px;
         font-size: 17px;
-        color: #037EE5;
+        color: #037EE5 !important;
       }
 
       .name {
@@ -288,6 +320,68 @@ export default {
     }
   }
 
+  &__messages {
+    position: absolute;
+    top: 0;
+    bottom: 79px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: end;
+    align-items: start;
+    padding: 5px 20px;
+    font-size: 15px;
+    width: 100%;
+    overflow: hidden;
+
+    .msg-right + .msg-right::before {
+      display: none;
+    }
+    .msg-left + .msg-left::before {
+      display: none;
+    }
+
+    .msg {
+      position: relative;
+      max-width: 298px;
+      padding: 8px 12px;
+      margin: 3px 0;
+
+      .time {
+        font-size: 12px;
+        color: #9C9CA3;
+      }
+
+      &-left {
+        background: #fff;
+        border-radius: 18px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 12px;
+
+        &::before {
+          content: url('../assets/icons/msg-lt-left.svg');
+          position: absolute;
+          bottom: -5px;
+          left: -6px;
+        }
+      }
+
+      &-right {
+        background: #E7FECC;
+        border-radius: 18px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 12px;
+        align-self: end;
+
+        &::before {
+          content: url('../assets/icons/msg-lt-right.svg');
+          position: absolute;
+          bottom: -5px;
+          right: -6px;
+        }
+      }
+    }
+  }
+
   &__input {
     position: absolute;
     left: 0;
@@ -343,6 +437,54 @@ export default {
         height: 5px;
         background: rgba(128, 128, 128, 0.3);
         border-radius: 10px;
+      }
+    }
+  }
+
+  // Dark mode
+  &.dark {
+    background-image: url('../assets/screen-bg-dark.png');
+
+    * {
+      color: #fff;
+    }
+
+    .screen__greeting-box {
+      background: rgba(168, 168, 168, 0.15);
+    }
+
+    .screen__header {
+      background: #171717;
+
+      &--status img {
+        filter: invert(1);
+      }
+    }
+
+    .screen__input {
+      background: #262628;
+
+      .input {
+        background: #000;
+        border-color: #4B4B4D;
+      }
+    }
+
+    .msg {
+      &-left {
+        background: #252033;
+
+        &::before {
+          content: url('../assets/icons/msg-dk-left.svg');
+        }
+      }
+
+      &-right {
+        background: #7253F6;
+
+        &::before {
+          content: url('../assets/icons/msg-dk-right.svg');
+        }
       }
     }
   }

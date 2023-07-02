@@ -5,7 +5,21 @@ import Playground from './components/Playground.vue';
 import Screen from './components/Screen.vue';
 
 export default {
-  components: {Hero, Screen, Playground, Footer}
+  components: {Hero, Screen, Playground, Footer},
+  data() {
+    return {
+      messages: [],
+      isLightTheme: true
+    }
+  },
+  methods: {
+    addMessage(msg) {
+      this.messages.unshift(msg);
+    },
+    switchScreenTheme() {
+      this.isLightTheme = !this.isLightTheme;
+    }
+  }
 }
 </script>
 
@@ -17,8 +31,8 @@ export default {
 
     <section class="main-section" id="main">
       
-      <Screen></Screen>
-      <Playground></Playground>
+      <Screen :messages="messages" :isLightTheme="isLightTheme"></Screen>
+      <Playground @addMessage="addMessage" :isLightTheme="isLightTheme" @switchScreenTheme="switchScreenTheme"></Playground>
 
     </section>
 

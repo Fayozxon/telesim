@@ -1,12 +1,35 @@
 <script>
 
 export default {
-  data() {
+    props: ['isLightTheme'],
+    data() {
     return {
-        isLightTheme: true,
         msg: '',
         markAsRead: true,
         isBlurred: false
+    }
+  },
+  methods: {
+    getTime() {
+        let now = new Date();
+        return `${now.getHours()}:${now.getMinutes()}`
+    },
+    newMessage(side) {
+      let msg = {
+        text: this.msg,
+        isRead: this.markAsRead,
+        time: this.getTime(),
+        side
+      }
+
+      this.$emit('addMessage', msg);
+      this.msg = '';
+    },
+    sendMessage() {
+        this.newMessage('right');
+    },
+    receiveMessage() {
+        this.newMessage('left');
     }
   }
 }
@@ -16,12 +39,12 @@ export default {
     
     <div class="playground">
         <h2 class="playground__title">
-            Yorqin
+            Tungi
             <div class="toggle">
-                <input type="checkbox" v-model="isLightTheme">
+                <input type="checkbox" @click="$emit('switchScreenTheme')">
                 <div class="custom"></div>
             </div>
-            Qorong'u
+            Kunduzgi
         </h2>
         <!-- input -->
         <textarea v-model="msg" class="playground__input" placeholder="xabarni yozing..."></textarea>
@@ -35,11 +58,11 @@ export default {
         <!-- buttons -->
         <div class="playground__btns">
             <div>
-                <button class="btn btn-send">
+                <button @click="sendMessage" class="btn btn-send">
                     <img src="../assets/icons/icon-up.svg">
                     <span class="hide-mobile">Yuborish</span>
                 </button>
-                <button class="btn">
+                <button @click="receiveMessage" class="btn">
                     <img src="../assets/icons/icon-down.svg">
                     <span class="hide-mobile">Qabul qilish</span>
                 </button>
