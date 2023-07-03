@@ -600,11 +600,19 @@ export default {
       &-right {
         background: #7253F6;
 
+        &.img {
+          .icon {
+            right: 25px;
+            bottom: 11px;
+            transform: scale(0.9);
+          }
+        }
+
         .time {
           color: #E9E9EB;
         }
 
-        img {
+        .icon {
           bottom: -4px;
         }
 
