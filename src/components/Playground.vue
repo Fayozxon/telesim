@@ -5,6 +5,7 @@ export default {
     data() {
     return {
         msg: '',
+        img: '',
         markAsRead: true,
         isBlurred: false
     }
@@ -22,16 +23,18 @@ export default {
         return `${hour}:${min}`;
     },
     newMessage(side) {
-        if (this.msg.length) {
+        if (this.msg.length || this.img.length) {
             let msg = {
-            text: this.msg,
-            isRead: this.markAsRead,
-            time: this.getTime(),
-            side
+                text: this.msg,
+                isRead: this.markAsRead,
+                time: this.getTime(),
+                img: this.img,
+                side
             }
     
             this.$emit('addMessage', msg);
             this.msg = '';
+            this.img = '';
         }
     },
     sendMessage() {
@@ -46,7 +49,25 @@ export default {
       this.$emit('newScreenBg', img);
     },
     pressInput() {
-        fileInput.click();
+        bgInput.click();
+    },
+    pressSendImgInput() {
+        sendImgInput.click();
+    },
+    pressReceiveImgInput() {
+        receiveImgInput.click();
+    },
+    sendImg(event) {
+        this.msg = '';
+        const files = event.target.files;
+        this.img = URL.createObjectURL(files[0]);
+        this.newMessage('right');
+    },
+    receiveImg(event) {
+        this.msg = '';
+        const files = event.target.files;
+        this.img = URL.createObjectURL(files[0]);
+        this.newMessage('left');
     }
   }
 }
@@ -88,20 +109,32 @@ export default {
                 </button>
             </div>
             <div>
-                <button class="btn btn-secondary">
+                <button class="btn btn-secondary"  @click="pressSendImgInput">
                     <img src="../assets/icons/icon-photo.svg">
                     Yuborish
                 </button>
-                <button class="btn btn-secondary">
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  id="sendImgInput"
+                  style="display: none;"
+                  @change="sendImg">
+                <button class="btn btn-secondary" @click="pressReceiveImgInput">
                     <img src="../assets/icons/icon-photo.svg">
                     Qabul qilish
                 </button>
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  id="receiveImgInput"
+                  style="display: none;"
+                  @change="receiveImg">
             </div>
         </div>
         <!-- bg control -->
         <div class="file-input">
             <button class="btn" @click="pressInput">Fon rasmini tanlash</button>
-            <input type="file" @change="onBgPicked" accept="image/png, image/jpeg" id="fileInput" class="btn">
+            <input type="file" @change="onBgPicked" accept="image/png, image/jpeg" id="bgInput">
         </div>
         <div class="playground__checkbox">
             <div class="checkbox">

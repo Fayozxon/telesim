@@ -122,13 +122,14 @@ export default {
       </div>
       <!-- screen -->
       <div class="screen__messages">
-        <p v-for="msg in messages" class="msg" :class="`msg-${msg.side}`">
+        <p v-for="msg in messages" class="msg" :class="`msg-${msg.side}`, {img: msg.img.length}">
           {{ msg.text }}
+          <img v-if="msg.img.length" :src="msg.img" alt="Image in message" class="msg-img">
           <span class="time">{{ msg.time }}</span>
-          <img v-if="msg.side == 'right' && msg.isRead && isLightTheme" src="../assets/icons/icon-read.svg">
-          <img v-if="msg.side == 'right' && !msg.isRead && isLightTheme" src="../assets/icons/icon-not-read.svg">
-          <img v-if="msg.side == 'right' && msg.isRead  && !isLightTheme" src="../assets/icons/icon-dk-read.svg">
-          <img v-if="msg.side == 'right' && !msg.isRead  && !isLightTheme" src="../assets/icons/icon-dk-not-read.png">
+          <img class="icon" v-if="msg.side == 'right' && msg.isRead && isLightTheme" src="../assets/icons/icon-read.svg">
+          <img class="icon" v-if="msg.side == 'right' && !msg.isRead && isLightTheme" src="../assets/icons/icon-not-read.svg">
+          <img class="icon" v-if="msg.side == 'right' && msg.isRead  && !isLightTheme" src="../assets/icons/icon-dk-read.svg">
+          <img class="icon" v-if="msg.side == 'right' && !msg.isRead  && !isLightTheme" src="../assets/icons/icon-dk-not-read.png">
         </p>
         <h3 v-if="messages.length" class="screen__messages--date">{{ date }}</h3>
       </div>
@@ -411,6 +412,41 @@ export default {
       justify-content: end;
       column-gap: 3px;
 
+      &.img {
+        padding: 2px;
+        justify-content: center;
+        align-items: center;
+        
+        .msg-img {
+          position: relative;
+          width: 100%;
+          border-radius: inherit;
+        }
+
+        .time {
+          position: absolute;
+          bottom: 10px;
+          right: 20px;
+          background: rgba(0,0,0,0.2);
+          color: #fff;
+          padding: 1px 7px;
+          border-radius: 10px;
+        }
+      }
+
+      &-right.img {
+        .time {
+          padding-right: 25px;
+        }
+        
+        .icon {
+          position: absolute;
+          right: 27px;
+          filter: brightness(100);
+          bottom: 14px;
+        }
+      }
+
       .time {
         position: relative;
         right: -3px;
@@ -446,7 +482,7 @@ export default {
           bottom: -5px;
         }
 
-        img {
+        .icon {
           position: relative;
           right: -5px;
           bottom: -2;
