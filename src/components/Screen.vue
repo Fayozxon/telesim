@@ -77,7 +77,7 @@ export default {
       <div v-if="!messages.length" class="screen__greeting-box">
         <h3>No messages here yet...</h3>
         <p>Start the conversation or tap the greeting below.</p>
-        <img src="../assets/sticker.webp" alt="Sticker">
+        <img src="../assets/stickers/sticker-5.gif" alt="Sticker">
       </div>
       <!-- header -->
       <div class="screen__header">
@@ -93,7 +93,7 @@ export default {
         <div class="screen__header--profile">
           <span class="button">
             <img src="../assets/icons/icon-back.svg">
-            Chats
+            Back
           </span>
           <div class="name">
             <input
@@ -122,9 +122,13 @@ export default {
       </div>
       <!-- screen -->
       <div class="screen__messages">
-        <p v-for="msg in messages" class="msg" :class="`msg-${msg.side}`, {notread: !msg.isRead}">
+        <p v-for="msg in messages" class="msg" :class="`msg-${msg.side}`">
           {{ msg.text }}
           <span class="time">{{ msg.time }}</span>
+          <img v-if="msg.side == 'right' && msg.isRead && isLightTheme" src="../assets/icons/icon-read.svg">
+          <img v-if="msg.side == 'right' && !msg.isRead && isLightTheme" src="../assets/icons/icon-not-read.svg">
+          <img v-if="msg.side == 'right' && msg.isRead  && !isLightTheme" src="../assets/icons/icon-dk-read.svg">
+          <img v-if="msg.side == 'right' && !msg.isRead  && !isLightTheme" src="../assets/icons/icon-dk-not-read.png">
         </p>
         <h3 v-if="messages.length" class="screen__messages--date">{{ date }}</h3>
       </div>
@@ -190,7 +194,9 @@ export default {
     left: 50%;
     width: 220px;
     transform: translate(-50%,-50%);
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 1px 10px rgba(0,0,0,0.03);
     color: #fff;
     font-size: 13px;
     text-align: center;
@@ -213,7 +219,8 @@ export default {
     left: 0;
     right: 0;
     height: 88px;
-    background: #F6F6F6;
+    background: rgba(246, 246, 246, 0.85);
+    backdrop-filter: blur(15px);
     z-index: 2;
 
     &--status {
@@ -371,7 +378,7 @@ export default {
 
     &--date {
       align-self: center;
-      background: rgba(0,0,0,0.2);
+      background: rgba(0, 0, 0, 0.2);
       color: #fff;
       padding: 2px 10px;
       border-radius: 20px;
@@ -398,8 +405,16 @@ export default {
       max-width: 298px;
       padding: 8px 12px;
       margin: 2px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: end;
+      column-gap: 3px;
 
       .time {
+        position: relative;
+        right: -3px;
+        bottom: -4px;
         font-size: 12px;
         color: #9C9CA3;
       }
@@ -407,7 +422,7 @@ export default {
       &-left {
         background: #fff;
         border-radius: 18px;
-        border-top-left-radius: 8px;
+        border-top-left-radius: 12px;
         border-bottom-left-radius: 12px;
 
         &::before {
@@ -421,9 +436,21 @@ export default {
       &-right {
         background: #E7FECC;
         border-radius: 18px;
-        border-top-right-radius: 8px;
+        border-top-right-radius: 12px;
         border-bottom-right-radius: 12px;
         align-self: end;
+
+        .time {
+          position: relative;
+          right: -4px;
+          bottom: -5px;
+        }
+
+        img {
+          position: relative;
+          right: -5px;
+          bottom: -2;
+        }
 
         &::before {
           content: url('../assets/icons/msg-lt-right.svg');
@@ -444,7 +471,8 @@ export default {
     display: flex;
     justify-content: end;
     flex-direction: column;
-    background: #F6F6F6;
+    background: rgba(246, 246, 246, 0.8);
+    backdrop-filter: blur(15px);
     
     &--icons {
       display: flex;
@@ -503,12 +531,12 @@ export default {
       color: #fff;
     }
 
-    .screen__greeting-box, .screen__messages--date {
-      background: rgba(168, 168, 168, 0.15);
+    .screen__messages--date {
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .screen__header {
-      background: #171717;
+      background: rgba(23, 23, 23, 0.9);
 
       &--status img {
         filter: invert(1);
@@ -516,7 +544,7 @@ export default {
     }
 
     .screen__input {
-      background: #262628;
+      background: rgba(38, 38, 40, 0.9);
 
       .input {
         background: #000;
@@ -535,6 +563,14 @@ export default {
 
       &-right {
         background: #7253F6;
+
+        .time {
+          color: #E9E9EB;
+        }
+
+        img {
+          bottom: -4px;
+        }
 
         &::before {
           content: url('../assets/icons/msg-dk-right.svg');

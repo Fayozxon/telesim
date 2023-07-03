@@ -179,7 +179,7 @@ export default {
 
         & > div {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: stretch;
             gap: 10px;
             padding-bottom: 10px;
         }
