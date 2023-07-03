@@ -3,6 +3,7 @@ import Hero from './components/Hero.vue';
 import Footer from './components/Footer.vue';
 import Playground from './components/Playground.vue';
 import Screen from './components/Screen.vue';
+import domtoimage from 'dom-to-image';
 
 export default {
   components: {Hero, Screen, Playground, Footer},
@@ -29,6 +30,15 @@ export default {
     },
     makeBgBlurred() {
       this.isBgBlurred = !this.isBgBlurred;
+    },
+    takeScreenshot() {
+      domtoimage.toJpeg(document.getElementById('screen'), { quality: 1 })
+        .then(function (dataUrl) {
+            var link = document.createElement('a');
+            link.download = 'telesim-screenshot.jpeg';
+            link.href = dataUrl;
+            link.click();
+        });
     }
   }
 }
@@ -54,7 +64,8 @@ export default {
         @switchScreenTheme="switchScreenTheme"
         @deleteLastMessage="deleteLastMessage"
         @newScreenBg="newScreenBg"
-        @makeBgBlurred="makeBgBlurred">
+        @makeBgBlurred="makeBgBlurred"
+        @takeScreenshot="takeScreenshot">
       </Playground>
 
     </section>

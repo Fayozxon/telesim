@@ -22,7 +22,7 @@ export default {
       </a>
     </header>
 
-    <div class="language-switch">
+    <div class="language-switch" style="display: none;">
       <span>English</span>&nbsp&nbsp•&nbsp&nbsp<span class="active">O‘zbek</span>
     </div>
 

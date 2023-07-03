@@ -66,7 +66,7 @@ export default {
 <template>
   
   <div class="box">
-    <div class="screen" :class="{dark: !isLightTheme}">
+    <div class="screen" id="screen" :class="{dark: !isLightTheme}">
       <img
         v-if="screenBgSrc"
         :src="screenBgSrc"

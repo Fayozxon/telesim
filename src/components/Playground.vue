@@ -144,7 +144,7 @@ export default {
             <label for="isBlurred">fon xiralashish effekti</label>
         </div>
         <!-- download ss -->
-        <button class="btn">
+        <button class="btn" @click="$emit('takeScreenshot')">
             <img src="../assets/icons/icon-download.svg">
             Skrinshot
         </button>
