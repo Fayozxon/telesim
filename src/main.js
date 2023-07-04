@@ -1,7 +1,20 @@
-import { createApp } from 'vue';
-import App from './App.vue';
+import { createApp } from "vue";
+import { createI18n } from "vue-i18n";
+import App from "./App.vue";
 import './main.scss';
 
-const app = createApp(App);
+import messages from "@intlify/unplugin-vue-i18n/messages";
 
-app.mount('#app');
+const i18n = createI18n({
+  legacy: false,
+  globalInjection: true,
+  locale: "en",
+  fallbackLocale: "en",
+  availableLocales: ["en", "uz"],
+  messages: messages,
+});
+
+const app = createApp(App)
+
+app.use(i18n)
+app.mount('#app')

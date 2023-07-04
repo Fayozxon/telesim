@@ -77,32 +77,32 @@ export default {
     
     <div class="playground">
         <h2 class="playground__title">
-            Tungi
+            {{ $t("pg-dark") }} 
             <div class="toggle">
                 <input type="checkbox" :checked="isLightTheme" @click="$emit('switchScreenTheme')">
                 <div class="custom"></div>
             </div>
-            Kunduzgi
+            {{ $t("pg-light") }}
         </h2>
         <!-- input -->
-        <textarea v-model="msg" class="playground__input" placeholder="xabarni yozing..."></textarea>
+        <textarea v-model="msg" class="playground__input" :placeholder="$t('pg-placeholder')"></textarea>
         <div class="playground__checkbox">
             <div class="checkbox">
                 <input type="checkbox" v-model="markAsRead" id="markAsRead">
                 <div class="custom"></div>
             </div>
-            <label for="markAsRead">o'qilgan deb belgilash</label>
+            <label for="markAsRead">{{ $t("pg-subtext-1") }}</label>
         </div>
         <!-- buttons -->
         <div class="playground__btns">
             <div>
                 <button @click="sendMessage" class="btn btn-send">
                     <img src="../assets/icons/icon-up.svg">
-                    <span class="hide-mobile">Yuborish</span>
+                    <span class="hide-mobile">{{ $t("pg-btn-1") }}</span>
                 </button>
                 <button @click="receiveMessage" class="btn">
                     <img src="../assets/icons/icon-down.svg">
-                    <span class="hide-mobile">Qabul qilish</span>
+                    <span class="hide-mobile">{{ $t("pg-btn-2") }}</span>
                 </button>
                 <button @click="$emit('deleteLastMessage')" class="btn btn-reset">
                     <img src="../assets/icons/icon-reset.svg">
@@ -111,7 +111,7 @@ export default {
             <div>
                 <button class="btn btn-secondary"  @click="pressSendImgInput">
                     <img src="../assets/icons/icon-photo.svg">
-                    Yuborish
+                    {{ $t("pg-btn-1") }}
                 </button>
                 <input
                   type="file"
@@ -121,7 +121,7 @@ export default {
                   @change="sendImg">
                 <button class="btn btn-secondary" @click="pressReceiveImgInput">
                     <img src="../assets/icons/icon-photo.svg">
-                    Qabul qilish
+                    {{ $t("pg-btn-2") }}
                 </button>
                 <input
                   type="file"
@@ -133,7 +133,7 @@ export default {
         </div>
         <!-- bg control -->
         <div class="file-input">
-            <button class="btn" @click="pressInput">Fon rasmini tanlash</button>
+            <button class="btn" @click="pressInput">{{ $t("pg-btn-3") }}</button>
             <input type="file" @change="onBgPicked" accept="image/png, image/jpeg" id="bgInput">
         </div>
         <div class="playground__checkbox">
@@ -141,12 +141,12 @@ export default {
                 <input type="checkbox" @click="$emit('makeBgBlurred')" id="isBlurred">
                 <div class="custom"></div>
             </div>
-            <label for="isBlurred">fon xiralashish effekti</label>
+            <label for="isBlurred">{{ $t("pg-subtext-2") }}</label>
         </div>
         <!-- download ss -->
         <button class="btn" @click="$emit('takeScreenshot')">
             <img src="../assets/icons/icon-download.svg">
-            Skrinshot
+            {{ $t("pg-btn-4") }}
         </button>
     </div>
 

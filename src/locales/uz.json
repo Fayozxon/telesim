@@ -1,0 +1,16 @@
+{
+    "hero-title": "Soxta Xabarlashish",
+    "hero-description": "Bu chat <a href=\"https://telegram.org/\" target=\"_blank\">Telegram</a>ning simulyatori. Brauzerni o'zida soxta xabarlarni hosil qiling va skrinshotlarni bepul yuklab olib do'stlaringizga yuboring! Faqatgina hazil sifatida ishlatishni maslahat beraman.",
+    "hero-button-1": "Sinab ko'ring",
+    "hero-button-2": "Muallif",
+    "hero-cta": "Githubda yulduz bosing",
+    "pg-light": "Tungi",
+    "pg-dark": "Kunduzgi",
+    "pg-placeholder": "xabarni yozing...",
+    "pg-subtext-1": "o'qilgan deb belgilash",
+    "pg-btn-1": "Yuborish",
+    "pg-btn-2": "Qabul qilish",
+    "pg-btn-3": "Fon rasmini o'zgartirish",
+    "pg-subtext-2": "fon xiralashish effekti",
+    "pg-btn-4": "Skrinshot"
+}

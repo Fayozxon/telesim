@@ -1,6 +1,21 @@
 <script>
 export default {
-  
+  methods: {
+    getLanguage() {
+      let lang = localStorage.getItem('lang');
+
+      if (lang.length) {
+        this.$i18n.locale = lang;
+      }
+    },
+    setLanguage(lang) {
+      this.$i18n.locale = lang;
+      localStorage.setItem('lang', lang);
+    }
+  },
+  mounted() {
+    this.getLanguage();
+  }
 }
 </script>
 
@@ -12,7 +27,7 @@ export default {
       <img src="../assets/hero-image.png" alt="Telegram logo">
       <a href="https://github.com/Fayozxon/telesim" class="hero-image__star" target="_blank">
         <img src="../assets/icons/icon-star.gif" alt="Star icon">
-        Githubda yulduz bosing
+        {{ $t("hero-cta") }}
       </a>
     </div>
     
@@ -22,17 +37,17 @@ export default {
       </a>
     </header>
 
-    <div class="language-switch" style="display: none;">
-      <span>English</span>&nbsp&nbsp•&nbsp&nbsp<span class="active">O‘zbek</span>
+    <div class="language-switch">
+      <span @click="setLanguage('en')" :class="{active: $i18n.locale == 'en'}">English</span>
+      &nbsp&nbsp•&nbsp&nbsp
+      <span @click="setLanguage('uz')" :class="{active: $i18n.locale == 'uz'}">O‘zbek</span>
     </div>
 
     <section class="hero-section">
-      <h1 class="hero-section__title">Soxta Xabarlashish</h1>
-      <p class="hero-section__text">
-        Bu chat <a href="https://telegram.org/" target="_blank">Telegram</a>ning simulyatori. Brauzerni o'zida soxta xabarlarni hosil qiling va skrinshotlarni bepul yuklab olib do'stlaringizga yuboring! Faqatgina hazil sifatida ishlatishni maslahat beraman.
-      </p>
-      <a href="#main" class="btn">Sinab ko‘ring</a>
-      <a href="https://github.com/Fayozxon/" class="btn btn-secondary">Muallif</a>
+      <h1 class="hero-section__title">{{ $t("hero-title") }}</h1>
+      <p class="hero-section__text" v-html="$t('hero-description')"></p>
+      <a href="#main" class="btn">{{ $t("hero-button-1") }}</a>
+      <a href="https://github.com/Fayozxon/" class="btn btn-secondary">{{ $t("hero-button-2") }}</a>
     </section>
 
   </div>

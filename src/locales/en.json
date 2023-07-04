@@ -1,0 +1,16 @@
+{
+    "hero-title": "Fake messaging",
+    "hero-description": "This is a simulator of the famous messenger: <a href=\"https://telegram.org/\" target=\"_blank\">Telegram</a>. Create fake messages on browser and download the screenshots for free! Send them to your friends and remember, only use it for fun!",
+    "hero-button-1": "Check it out",
+    "hero-button-2": "Author",
+    "hero-cta": "Star on Github",
+    "pg-light": "Light",
+    "pg-dark": "Dark",
+    "pg-placeholder": "write your text...",
+    "pg-subtext-1": "mark as read",
+    "pg-btn-1": "Send",
+    "pg-btn-2": "Receieve",
+    "pg-btn-3": "Change background",
+    "pg-subtext-2": "make background blurred",
+    "pg-btn-4": "Screenshot"
+}
