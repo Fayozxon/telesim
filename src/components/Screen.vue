@@ -64,6 +64,14 @@ export default {
 </script>
 
 <template>
+  <!-- preloading -->
+  <img style="display: none" src="../assets/screen-bg-dark.png">
+  <img style="display: none" src="../assets/icons/icon-read.svg">
+  <img style="display: none" src="../assets/icons/icon-not-read.svg">
+  <img style="display: none" src="../assets/icons/icon-dk-read.svg">
+  <img style="display: none" src="../assets/icons/icon-dk-not-read.png">
+  <img style="display: none" src='../assets/icons/msg-lt-left.svg'>
+  <img style="display: none" src='../assets/icons/msg-lt-right.svg'>
   
   <div class="box">
     <div class="screen" id="screen" :class="{dark: !isLightTheme}">
