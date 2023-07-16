@@ -47,7 +47,7 @@ export default {
       <h1 class="hero-section__title">{{ $t("hero-title") }}</h1>
       <p class="hero-section__text" v-html="$t('hero-description')"></p>
       <a href="#main" class="btn">{{ $t("hero-button-1") }}</a>
-      <a href="https://github.com/Fayozxon/" class="btn btn-secondary">{{ $t("hero-button-2") }}</a>
+      <a href="https://fayozhons.netlify.app/" class="btn btn-secondary">{{ $t("hero-button-2") }}</a>
     </section>
 
   </div>

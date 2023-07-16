@@ -65,13 +65,17 @@ export default {
 
 <template>
   <!-- preloading -->
-  <img style="display: none" src="../assets/screen-bg-dark.png">
-  <img style="display: none" src="../assets/icons/icon-read.svg">
-  <img style="display: none" src="../assets/icons/icon-not-read.svg">
-  <img style="display: none" src="../assets/icons/icon-dk-read.svg">
-  <img style="display: none" src="../assets/icons/icon-dk-not-read.png">
-  <img style="display: none" src='../assets/icons/msg-lt-left.svg'>
-  <img style="display: none" src='../assets/icons/msg-lt-right.svg'>
+  <div style="display: none;">
+    <img src="../assets/screen-bg-dark.png">
+    <img src="../assets/icons/icon-read.svg">
+    <img src="../assets/icons/icon-not-read.svg">
+    <img src="../assets/icons/icon-dk-read.svg">
+    <img src="../assets/icons/icon-dk-not-read.png">
+    <img src='../assets/icons/msg-lt-left.svg'>
+    <img src='../assets/icons/msg-dk-left.svg'>
+    <img src='../assets/icons/msg-lt-right.svg'>
+    <img src='../assets/icons/msg-dk-right.svg'>
+  </div>
   
   <div class="box">
     <div class="screen" id="screen" :class="{dark: !isLightTheme}">
